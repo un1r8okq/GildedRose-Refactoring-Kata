@@ -206,10 +206,10 @@ namespace GildedRoseTests
         [Fact]
         public void When100000DaysPass_ItTakesLessThan200Ms()
         {
+            var stopwatch = new Stopwatch();
             var items = new List<Item>();
             for (var i = 0; i < 100000; i++) items.Add(new Item());
             var sut = new GildedRose(items);
-            var stopwatch = new Stopwatch();
 
             stopwatch.Start();
             sut.UpdateQuality();

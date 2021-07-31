@@ -47,11 +47,10 @@ namespace GildedRoseTests
         [Fact]
         public void WhenItemIsUpdated_NewObjectIsReturned()
         {
-            var item = new Item();
+            var item = new Item { Name = "Sulfuras, Hand of Ragnaros" };
             var sut = new SulfurasRuleset();
 
-            var newItem = sut.UpdateItem(
-                new Item { Name = "Sulfuras, Hand of Ragnaros" });
+            var newItem = sut.UpdateItem(item);
 
             Assert.NotSame(item, newItem);
         }
@@ -59,14 +58,14 @@ namespace GildedRoseTests
         [Fact]
         public void When100000ItemsAreUpdated_ItTakesLessThan200Ms()
         {
-            var sut = new SulfurasRuleset();
             var stopwatch = new Stopwatch();
+            var item = new Item { Name = "Sulfuras, Hand of Ragnaros" };
+            var sut = new SulfurasRuleset();
 
             stopwatch.Start();
             for (var i = 0; i < 100000; i++)
             {
-                sut.UpdateItem(
-                    new Item { Name = "Sulfuras, Hand of Ragnaros" });
+                sut.UpdateItem(item);
             }
             stopwatch.Stop();
 

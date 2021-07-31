@@ -94,7 +94,7 @@ namespace GildedRoseTests
             var item = new Item();
             var sut = new BaseItemRuleset();
 
-            var newItem = sut.UpdateItem(new Item());
+            var newItem = sut.UpdateItem(item);
 
             Assert.NotSame(item, newItem);
         }
@@ -102,8 +102,8 @@ namespace GildedRoseTests
         [Fact]
         public void When100000ItemsAreUpdated_ItTakesLessThan200Ms()
         {
-            var sut = new BaseItemRuleset();
             var stopwatch = new Stopwatch();
+            var sut = new BaseItemRuleset();
 
             stopwatch.Start();
             for (var i = 0; i < 100000; i++)
