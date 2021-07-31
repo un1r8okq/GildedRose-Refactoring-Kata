@@ -15,14 +15,13 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name != ItemName.AgedBrie && Items[i].Name != ItemName.BackstagePasses)
+                if (
+                    Items[i].Name != ItemName.AgedBrie &&
+                    Items[i].Name != ItemName.BackstagePasses)
                 {
-                    if (Items[i].Quality > 0)
+                    if (Items[i].Quality > 0 && Items[i].Name != ItemName.Sulfuras)
                     {
-                        if (Items[i].Name != ItemName.Sulfuras)
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
+                       Items[i].Quality = Items[i].Quality - 1;
                     }
                 }
                 else
@@ -33,20 +32,14 @@ namespace GildedRoseKata
 
                         if (Items[i].Name == ItemName.BackstagePasses)
                         {
-                            if (Items[i].SellIn < 11)
+                            if (Items[i].SellIn < 11 && Items[i].Quality < 50)
                             {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
+                               Items[i].Quality = Items[i].Quality + 1;
                             }
 
-                            if (Items[i].SellIn < 6)
+                            if (Items[i].SellIn < 6 && Items[i].Quality < 50)
                             {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
+                                Items[i].Quality = Items[i].Quality + 1;
                             }
                         }
                     }
@@ -61,27 +54,21 @@ namespace GildedRoseKata
                 {
                     if (Items[i].Name != ItemName.AgedBrie)
                     {
-                        if (Items[i].Name != ItemName.BackstagePasses)
+                        if (
+                            Items[i].Name != ItemName.BackstagePasses &&
+                            Items[i].Quality > 0 &&
+                            Items[i].Name != ItemName.Sulfuras)
                         {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != ItemName.Sulfuras)
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
+                           Items[i].Quality = Items[i].Quality - 1;
                         }
                         else
                         {
                             Items[i].Quality = Items[i].Quality - Items[i].Quality;
                         }
                     }
-                    else
+                    else if (Items[i].Quality < 50)
                     {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
+                        Items[i].Quality = Items[i].Quality + 1;
                     }
                 }
             }
