@@ -19,8 +19,8 @@ namespace GildedRoseTests
                 new Item
                 {
                     Name = "Aged Brie",
-                    SellIn = 1,
                     Quality = initial,
+                    SellIn = 1,
                 },
             };
             var sut = new GildedRose(items);
@@ -42,8 +42,8 @@ namespace GildedRoseTests
                 new Item
                 {
                     Name = "Aged Brie",
-                    SellIn = 0,
                     Quality = initial,
+                    SellIn = 0,
                 },
             };
             var sut = new GildedRose(items);
@@ -65,8 +65,8 @@ namespace GildedRoseTests
                 new Item
                 {
                     Name = "Aged Brie",
-                    SellIn = -1,
                     Quality = initial,
+                    SellIn = -1,
                 },
             };
             var sut = new GildedRose(items);
@@ -84,8 +84,8 @@ namespace GildedRoseTests
                 new Item
                 {
                     Name = "Aged Brie",
-                    SellIn = 1,
                     Quality = 50,
+                    SellIn = 1,
                 },
             };
             var sut = new GildedRose(items);
@@ -103,8 +103,8 @@ namespace GildedRoseTests
                 new Item
                 {
                     Name = "Aged Brie",
-                    SellIn = 0,
                     Quality = 50,
+                    SellIn = 0,
                 },
             };
             var sut = new GildedRose(items);

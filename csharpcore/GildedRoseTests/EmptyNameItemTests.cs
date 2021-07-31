@@ -63,8 +63,8 @@ namespace GildedRoseTests
             {
                 new Item
                 {
-                    SellIn = 1,
                     Quality = initial,
+                    SellIn = 1,
                 },
             };
             var sut = new GildedRose(items);
@@ -86,8 +86,8 @@ namespace GildedRoseTests
             {
                 new Item
                 {
-                    SellIn = 0,
                     Quality = initial,
+                    SellIn = 0,
                 },
             };
             var sut = new GildedRose(items);
@@ -109,8 +109,8 @@ namespace GildedRoseTests
             {
                 new Item
                 {
-                    SellIn = -1,
                     Quality = initial,
+                    SellIn = -1,
                 },
             };
             var sut = new GildedRose(items);
@@ -133,8 +133,8 @@ namespace GildedRoseTests
             {
                 new Item
                 {
-                    SellIn = sellIn,
                     Quality = 0,
+                    SellIn = sellIn,
                 },
             };
             var sut = new GildedRose(items);
@@ -180,18 +180,18 @@ namespace GildedRoseTests
             {
                 new Item
                 {
-                    SellIn = 1,
                     Quality = initial,
+                    SellIn = 1,
                 },
                 new Item
                 {
-                    SellIn = 1,
                     Quality = initial,
+                    SellIn = 1,
                 },
                 new Item
                 {
-                    SellIn = 1,
                     Quality = initial,
+                    SellIn = 1,
                 },
             };
             var sut = new GildedRose(items);
