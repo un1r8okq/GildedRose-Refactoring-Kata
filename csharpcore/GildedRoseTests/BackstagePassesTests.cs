@@ -5,7 +5,7 @@ using Xunit;
 
 namespace GildedRoseTests
 {
-    public class BackstagePassTests
+    public class BackstagePassesTests
     {
         [Theory]
         [InlineData(6)]
