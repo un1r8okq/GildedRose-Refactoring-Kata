@@ -2,6 +2,6 @@
 {
     public interface ItemRuleset
     {
-        public void UpdateItem(Item item);
+        public Item UpdateItem(Item item);
     }
 }

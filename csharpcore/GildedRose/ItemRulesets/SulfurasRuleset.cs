@@ -1,8 +1,9 @@
-﻿namespace GildedRoseKata
+﻿using System;
+
+namespace GildedRoseKata
 {
     public class SulfurasRuleset : ItemRuleset
     {
-        public void UpdateItem(Item item)
-        {}
+        public Item UpdateItem(Item item) => throw new NotImplementedException();
     }
 }
