@@ -2,20 +2,15 @@
 {
     public class BaseItemRuleset : ItemRuleset
     {
-        public Item UpdateItem(Item item)
-        {
-            var quality = CalculateNewQuality(item);
-            var sellIn = item.SellIn - 1;
-
-            return new Item
+        public Item UpdateItem(Item item) =>
+            new Item
             {
                 Name = item.Name,
-                Quality = quality,
-                SellIn = sellIn,
+                Quality = CalculateQuality(item),
+                SellIn = CalculateSellIn(item),
             };
-        }
 
-        private int CalculateNewQuality(Item item)
+        private int CalculateQuality(Item item)
         {
             var updatedQuality = item.Quality;
 
@@ -35,5 +30,7 @@
 
             return updatedQuality;
         }
+
+        private int CalculateSellIn(Item item) => item.SellIn - 1;
     }
 }
