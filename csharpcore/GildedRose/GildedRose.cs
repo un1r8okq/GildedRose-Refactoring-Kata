@@ -15,8 +15,8 @@ namespace GildedRoseKata
         {
             for (var i = 0; i < Items.Count; i++)
             {
-                var ruleset = ItemRulesetFactory.GetRuleset(Items[i].Name);
-                Items[i] = ruleset.UpdateItem(Items[i]);
+                var itemUpdater = new ItemUpdater(Items[i]);
+                Items[i] = itemUpdater.UpdateItem();
             }
         }
     }

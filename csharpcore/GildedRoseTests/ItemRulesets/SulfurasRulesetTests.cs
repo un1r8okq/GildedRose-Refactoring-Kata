@@ -18,9 +18,9 @@ namespace GildedRoseTests
                 Name = "Sulfuras, Hand of Ragnaros",
                 SellIn = sellIn,
             };
-            var sut = new SulfurasRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(sellIn, newItem.SellIn);
         }
@@ -37,9 +37,9 @@ namespace GildedRoseTests
                 Quality = quality,
                 SellIn = 1,
             };
-            var sut = new SulfurasRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(quality, item.Quality);
         }
@@ -48,9 +48,9 @@ namespace GildedRoseTests
         public void WhenItemIsUpdated_NewObjectIsReturned()
         {
             var item = new Item { Name = "Sulfuras, Hand of Ragnaros" };
-            var sut = new SulfurasRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.NotSame(item, newItem);
         }
@@ -60,12 +60,12 @@ namespace GildedRoseTests
         {
             var stopwatch = new Stopwatch();
             var item = new Item { Name = "Sulfuras, Hand of Ragnaros" };
-            var sut = new SulfurasRuleset();
+            var sut = new ItemUpdater(item);
 
             stopwatch.Start();
             for (var i = 0; i < 100000; i++)
             {
-                sut.UpdateItem(item);
+                sut.UpdateItem();
             }
             stopwatch.Stop();
 

@@ -19,9 +19,9 @@ namespace GildedRoseTests
                     Quality = initial,
                     SellIn = 1,
                 };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(expected, newItem.Quality);
         }
@@ -39,9 +39,9 @@ namespace GildedRoseTests
                 Quality = initial,
                 SellIn = 0,
             };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(expected, newItem.Quality);
         }
@@ -59,9 +59,9 @@ namespace GildedRoseTests
                 Quality = initial,
                 SellIn = -1,
             };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(expected, newItem.Quality);
         }
@@ -75,9 +75,9 @@ namespace GildedRoseTests
                 Quality = 50,
                 SellIn = 1,
             };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(50, newItem.Quality);
         }
@@ -91,9 +91,9 @@ namespace GildedRoseTests
                 Quality = 50,
                 SellIn = 0,
             };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(50, newItem.Quality);
         }
@@ -102,9 +102,9 @@ namespace GildedRoseTests
         public void WhenItemIsUpdated_NewObjectIsReturned()
         {
             var item = new Item { Name = "Aged Brie" };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.NotSame(item, newItem);
         }
@@ -114,12 +114,12 @@ namespace GildedRoseTests
         {
             var stopwatch = new Stopwatch();
             var item = new Item { Name = "Aged Brie" };
-            var sut = new AgedBrieRuleset();
+            var sut = new ItemUpdater(item);
 
             stopwatch.Start();
             for (var i = 0; i < 100000; i++)
             {
-                sut.UpdateItem(item);
+                sut.UpdateItem();
             }
             stopwatch.Stop();
 

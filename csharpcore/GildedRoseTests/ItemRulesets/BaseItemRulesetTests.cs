@@ -17,9 +17,9 @@ namespace GildedRoseTests
             int expected)
         {
             var item = new Item { SellIn = initial };
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(item);
 
-            var updatedItem = sut.UpdateItem(item);
+            var updatedItem = sut.UpdateItem();
 
             Assert.Equal(expected, updatedItem.SellIn);
         }
@@ -32,9 +32,9 @@ namespace GildedRoseTests
             int expected)
         {
             var item = new Item { Quality = initial, SellIn = 1 };
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(item);
 
-            var updatedItem = sut.UpdateItem(item);
+            var updatedItem = sut.UpdateItem();
 
             Assert.Equal(expected, updatedItem.Quality);
         }
@@ -48,9 +48,9 @@ namespace GildedRoseTests
             int expected)
         {
             var item = new Item { Quality = initial, SellIn = 0 };
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(item);
 
-            var updatedItem = sut.UpdateItem(item);
+            var updatedItem = sut.UpdateItem();
 
             Assert.Equal(expected, updatedItem.Quality);
         }
@@ -64,9 +64,9 @@ namespace GildedRoseTests
             int expected)
         {
             var item = new Item { Quality = initial, SellIn = -1 };
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(item);
 
-            var updatedItem = sut.UpdateItem(item);
+            var updatedItem = sut.UpdateItem();
 
             Assert.Equal(expected, updatedItem.Quality);
         }
@@ -81,9 +81,9 @@ namespace GildedRoseTests
             int sellIn)
         {
             var item = new Item { Quality = 0, SellIn = sellIn };
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(item);
 
-            var updatedItem = sut.UpdateItem(item);
+            var updatedItem = sut.UpdateItem();
 
             Assert.Equal(0, updatedItem.Quality);
         }
@@ -92,9 +92,9 @@ namespace GildedRoseTests
         public void WhenItemIsUpdated_NewObjectIsReturned()
         {
             var item = new Item();
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.NotSame(item, newItem);
         }
@@ -103,12 +103,12 @@ namespace GildedRoseTests
         public void When100000ItemsAreUpdated_ItTakesLessThan200Ms()
         {
             var stopwatch = new Stopwatch();
-            var sut = new BaseItemRuleset();
+            var sut = new ItemUpdater(new Item());
 
             stopwatch.Start();
             for (var i = 0; i < 100000; i++)
             {
-                sut.UpdateItem(new Item());
+                sut.UpdateItem();
             }
             stopwatch.Stop();
 

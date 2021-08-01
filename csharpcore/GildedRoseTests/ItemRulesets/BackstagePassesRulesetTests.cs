@@ -23,9 +23,9 @@ namespace GildedRoseTests
                 Quality = 1,
                 SellIn = sellIn,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(3, newItem.Quality);
         }
@@ -45,9 +45,9 @@ namespace GildedRoseTests
                 Quality = initial,
                 SellIn = 10,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(expected, newItem.Quality);
         }
@@ -65,9 +65,9 @@ namespace GildedRoseTests
                 Quality = quality,
                 SellIn = 10,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(50, newItem.Quality);
         }
@@ -87,9 +87,9 @@ namespace GildedRoseTests
                 Quality = 1,
                 SellIn = sellIn,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(4, newItem.Quality);
         }
@@ -109,9 +109,9 @@ namespace GildedRoseTests
                 Quality = initial,
                 SellIn = 5,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(expected, newItem.Quality);
         }
@@ -130,9 +130,9 @@ namespace GildedRoseTests
                 Quality = quality,
                 SellIn = 5,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(50, newItem.Quality);
         }
@@ -152,9 +152,9 @@ namespace GildedRoseTests
                 Quality = quality,
                 SellIn = 0,
             };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.Equal(0, newItem.Quality);
         }
@@ -163,9 +163,9 @@ namespace GildedRoseTests
         public void WhenItemIsUpdated_NewObjectIsReturned()
         {
             var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert" };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
-            var newItem = sut.UpdateItem(item);
+            var newItem = sut.UpdateItem();
 
             Assert.NotSame(item, newItem);
         }
@@ -175,12 +175,12 @@ namespace GildedRoseTests
         {
             var stopwatch = new Stopwatch();
             var item = new Item { Name = "Backstage passes to a TAFKAL80ETC concert" };
-            var sut = new BackstagePassesRuleset();
+            var sut = new ItemUpdater(item);
 
             stopwatch.Start();
             for (var i = 0; i < 100000; i++)
             {
-                sut.UpdateItem(item);
+                sut.UpdateItem();
             }
             stopwatch.Stop();
 
