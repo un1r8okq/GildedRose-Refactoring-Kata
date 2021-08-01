@@ -204,6 +204,18 @@ namespace GildedRoseTests
         }
 
         [Fact]
+        public void WhenOneDayPasses_TheItemIsNotTheSameItem()
+        {
+            var item = new Item();
+            var items = new List<Item> { item };
+            var sut = new GildedRose(items);
+
+            sut.UpdateQuality();
+
+            Assert.NotSame(item, items.First());
+        }
+
+        [Fact]
         public void When100000DaysPass_ItTakesLessThan200Ms()
         {
             var stopwatch = new Stopwatch();

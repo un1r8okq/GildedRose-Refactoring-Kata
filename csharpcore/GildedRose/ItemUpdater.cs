@@ -12,8 +12,8 @@
         public Item UpdateItem()
         {
             var changeSet = GetChangeset();
-            var quality = CalculateQuality(changeSet);
-            var sellIn = _item.SellIn + changeSet.ChangeInSellIn;
+            var quality = GetQuality(changeSet);
+            var sellIn = GetSellIn(changeSet);
 
             return new Item
             {
@@ -21,31 +21,6 @@
                 Quality = quality,
                 SellIn = sellIn,
             };
-        }
-
-        private int CalculateQuality(ItemChangeset changeSet)
-        {
-            var quality = _item.Quality;
-
-            if (changeSet.QualityOverride != null)
-            {
-                quality = changeSet.QualityOverride.Value;
-            }
-            else
-            {
-                quality += changeSet.ChangeInQuality;
-            }
-
-            if (quality < 0)
-            {
-                quality = 0;
-            }
-            else if (quality > 50)
-            {
-                quality = 50;
-            }
-
-            return quality;
         }
 
         private ItemChangeset GetChangeset()
@@ -71,5 +46,33 @@
 
             return modifier.CalculateChangeset();
         }
+
+        private int GetQuality(ItemChangeset changeSet)
+        {
+            var quality = _item.Quality;
+
+            if (changeSet.OverrideQuality != null)
+            {
+                quality = changeSet.OverrideQuality.Value;
+            }
+            else
+            {
+                quality += changeSet.ChangeInQuality;
+            }
+
+            if (quality < 0)
+            {
+                quality = 0;
+            }
+            else if (quality > 50)
+            {
+                quality = 50;
+            }
+
+            return quality;
+        }
+
+        private int GetSellIn(ItemChangeset changeSet) =>
+            _item.SellIn + changeSet.ChangeInSellIn;
     }
 }

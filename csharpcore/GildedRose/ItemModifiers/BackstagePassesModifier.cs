@@ -18,7 +18,7 @@
 
             if (_item.SellIn <= 0)
             {
-                changeset.QualityOverride = 0;
+                changeset.OverrideQuality = 0;
             }
             else
             {
