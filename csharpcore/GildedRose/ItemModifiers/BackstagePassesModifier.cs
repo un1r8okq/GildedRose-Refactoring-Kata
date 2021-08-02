@@ -1,44 +1,40 @@
-﻿namespace GildedRoseKata
+namespace GildedRoseKata
 {
-    public class BackstagePassesModifier : Modifier
+    public class BackstagePassesModifier : IModifier
     {
-        private readonly Item _item;
+        public bool AppliesToItem(Item item) =>
+            item.Name == ItemName.BackstagePasses;
 
-        public BackstagePassesModifier(Item item)
-        {
-            _item = item;
-        }
-
-        public override ItemChangeset CalculateChangeset()
+        public ItemChangeset GetChangeset(Item item)
         {
             var changeset = new ItemChangeset
             {
                 ChangeInSellIn = -1,
             };
 
-            if (_item.SellIn <= 0)
+            if (item.SellIn <= 0)
             {
                 changeset.OverrideQuality = 0;
             }
             else
             {
-                changeset.ChangeInQuality = CalculateChangeInQuality();
+                changeset.ChangeInQuality = CalculateChangeInQuality(item);
             }
 
             return changeset;
         }
 
-        private int CalculateChangeInQuality()
+        private int CalculateChangeInQuality(Item item)
         {
-            if (_item.SellIn > 10)
+            if (item.SellIn > 10)
             {
                 return 1;
             }
-            else if (_item.SellIn <= 10 && _item.SellIn > 5)
+            else if (item.SellIn <= 10 && item.SellIn > 5)
             {
                 return 2;
             }
-            else if (_item.SellIn <= 5 && _item.SellIn > 0)
+            else if (item.SellIn <= 5 && item.SellIn > 0)
             {
                 return 3;
             }

@@ -16,7 +16,7 @@ namespace GildedRoseKata
             for (var i = 0; i < Items.Count; i++)
             {
                 var itemUpdater = new ItemUpdater(Items[i]);
-                Items[i] = itemUpdater.UpdateItem();
+                itemUpdater.UpdateItem();
             }
         }
     }

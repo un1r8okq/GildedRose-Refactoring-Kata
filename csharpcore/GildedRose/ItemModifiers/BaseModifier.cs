@@ -1,18 +1,14 @@
-﻿namespace GildedRoseKata
+namespace GildedRoseKata
 {
-    public class BaseModifier : Modifier
+    public class BaseModifier : IModifier
     {
-        private readonly Item _item;
+        public bool AppliesToItem(Item item) => true;
 
-        public BaseModifier(Item item)
-        {
-            _item = item;
-        }
-
-        public override ItemChangeset CalculateChangeset() => new ItemChangeset
-        {
-            ChangeInQuality = _item.SellIn > 0 ? -1 : -2,
-            ChangeInSellIn = -1,
-        };
+        public ItemChangeset GetChangeset(Item item) =>
+            new ItemChangeset
+            {
+                ChangeInQuality = item.SellIn > 0 ? -1 : -2,
+                ChangeInSellIn = -1,
+            };
     }
 }

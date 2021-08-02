@@ -1,20 +1,16 @@
-﻿namespace GildedRoseKata
+namespace GildedRoseKata
 {
-    public class AgedBrieModifier : Modifier <= Interface
+    public class AgedBrieModifier : IModifier
     {
-        private readonly Item _item;
+        public bool AppliesToItem(Item item) =>
+            item.Name == ItemName.AgedBrie;
 
-        public AgedBrieModifier(Item item) <= Modifier
-        {
-            _item = item;
-        }
+        public ItemChangeset GetChangeset(Item item) =>
+            new ItemChangeset
+            {
 
-        public bool ShouldRun()?
-
-        public override ItemChangeset CalculateChangeset() => new ItemChangeset
-        {
-            ChangeInQuality = _item.SellIn > 0 ? 1 : 2,
-            ChangeInSellIn = -1,
-        };
+                ChangeInQuality = item.SellIn > 0 ? 1 : 2,
+                ChangeInSellIn = -1,
+            };
     }
 }

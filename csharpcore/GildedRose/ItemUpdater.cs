@@ -1,50 +1,42 @@
-﻿namespace GildedRoseKata
+﻿using System;
+using System.Collections.Generic;
+
+namespace GildedRoseKata
 {
     public class ItemUpdater
     {
+        private readonly List<IModifier> _modifiers;
         private readonly Item _item;
 
         public ItemUpdater(Item item)
         {
+            _modifiers = new List<IModifier>
+            {
+                new AgedBrieModifier(),
+                new BackstagePassesModifier(),
+                new SulfurasModifier(),
+                new BaseModifier(),
+            };
             _item = item;
         }
 
-        public Item UpdateItem()
+        public void UpdateItem()
         {
             var changeSet = GetChangeset();
-            var quality = GetQuality(changeSet);
-            var sellIn = GetSellIn(changeSet);
-
-            return new Item
-            {
-                Name = _item.Name,
-                Quality = quality,
-                SellIn = sellIn,
-            };
+            _item.Quality = GetQuality(changeSet);
+            _item.SellIn = GetSellIn(changeSet);
         }
 
         private ItemChangeset GetChangeset()
         {
-            Modifier modifier;
+            var modifier = _modifiers.Find(m => m.AppliesToItem(_item));
 
-            if (_item.Name == ItemName.AgedBrie)
+            if (modifier == null)
             {
-                modifier = new AgedBrieModifier(_item);
-            }
-            else if (_item.Name == ItemName.BackstagePasses)
-            {
-                modifier = new BackstagePassesModifier(_item);
-            }
-            else if (_item.Name == ItemName.Sulfuras)
-            {
-                modifier = new SulfurasModifier(_item);
-            }
-            else
-            {
-                modifier = new BaseModifier(_item);
+                throw new Exception("No matching modifier");
             }
 
-            return modifier.CalculateChangeset();
+            return modifier.GetChangeset(_item);
         }
 
         private int GetQuality(ItemChangeset changeSet)
