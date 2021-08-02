@@ -1,13 +1,15 @@
 ﻿namespace GildedRoseKata
 {
-    public class AgedBrieModifier : Modifier
+    public class AgedBrieModifier : Modifier <= Interface
     {
         private readonly Item _item;
 
-        public AgedBrieModifier(Item item)
+        public AgedBrieModifier(Item item) <= Modifier
         {
             _item = item;
         }
+
+        public bool ShouldRun()?
 
         public override ItemChangeset CalculateChangeset() => new ItemChangeset
         {
