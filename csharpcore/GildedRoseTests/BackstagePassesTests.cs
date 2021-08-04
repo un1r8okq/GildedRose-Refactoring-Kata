@@ -8,6 +8,29 @@ namespace GildedRoseTests
     public class BackstagePassesTests
     {
         [Theory]
+        [InlineData(11)]
+        [InlineData(100)]
+        [InlineData(42)]
+        public void WhenSellInIsGreaterThanTen_AndOneDayPasses_QualityIncreasesFromOneToTwo(
+            int sellIn)
+        {
+            var items = new List<Item>
+            {
+                new Item
+                {
+                    Name = "Backstage passes to a TAFKAL80ETC concert",
+                    Quality = 1,
+                    SellIn = sellIn,
+                },
+            };
+            var sut = new GildedRose(items);
+
+            sut.UpdateQuality();
+
+            Assert.Equal(2, items.First().Quality);
+        }
+
+        [Theory]
         [InlineData(6)]
         [InlineData(7)]
         [InlineData(8)]

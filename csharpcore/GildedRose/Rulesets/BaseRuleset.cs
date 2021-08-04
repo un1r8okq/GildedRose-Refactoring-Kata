@@ -1,6 +1,6 @@
 namespace GildedRoseKata
 {
-    public class BaseModifier : IRuleset
+    public class BaseRuleset : IRuleset
     {
         public bool AppliesTo(Item item) => true;
 

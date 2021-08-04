@@ -1,9 +1,9 @@
 namespace GildedRoseKata
 {
-    public class BackstagePassesModifier : IRuleset
+    public class BackstagePassesRuleset : IRuleset
     {
         public bool AppliesTo(Item item) =>
-            item.Name == ItemName.BackstagePasses;
+            item.Name.Contains("Backstage passes to a TAFKAL80ETC concert");
 
         public ItemChanges GetChanges(Item item)
         {

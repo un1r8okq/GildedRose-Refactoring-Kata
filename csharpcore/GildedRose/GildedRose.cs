@@ -15,15 +15,10 @@ namespace GildedRoseKata
         {
             foreach (var item in Items)
             {
-                if (item.Name == ItemName.Sulfuras)
-                {
-                    continue;
-                }
-
                 var ruleset = RulesetFactory.GetRuleset(item);
                 var changes = ruleset.GetChanges(item);
 
-                if (item.Name.StartsWith("Conjured "))
+                if (item.Name.StartsWith("Conjured ") && changes.ChangeInQuality < 0)
                 {
                     changes.ChangeInQuality *= 2;
                 }

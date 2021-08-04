@@ -6,9 +6,10 @@ namespace GildedRoseKata
     {
         private static readonly IRuleset[] _rulesets = new IRuleset[]
         {
-                new AgedBrieModifier(),
-                new BackstagePassesModifier(),
-                new BaseModifier(),
+                new AgedBrieRuleset(),
+                new BackstagePassesRuleset(),
+                new SulfurasRuleset(),
+                new BaseRuleset(),
         };
 
         public static IRuleset GetRuleset(Item item) =>
