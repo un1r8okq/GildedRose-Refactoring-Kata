@@ -1,25 +1,18 @@
 namespace GildedRoseKata
 {
-    public class BackstagePassesModifier : IModifier
+    public class BackstagePassesModifier : IRuleset
     {
-        public bool AppliesToItem(Item item) =>
+        public bool AppliesTo(Item item) =>
             item.Name == ItemName.BackstagePasses;
 
-        public ItemChangeset GetChangeset(Item item)
+        public ItemChanges GetChanges(Item item)
         {
-            var changeset = new ItemChangeset
+            var changeset = new ItemChanges
             {
                 ChangeInSellIn = -1,
             };
 
-            if (item.SellIn <= 0)
-            {
-                changeset.OverrideQuality = 0;
-            }
-            else
-            {
-                changeset.ChangeInQuality = CalculateChangeInQuality(item);
-            }
+            changeset.ChangeInQuality = CalculateChangeInQuality(item);
 
             return changeset;
         }
@@ -38,7 +31,7 @@ namespace GildedRoseKata
             {
                 return 3;
             }
-            return 0;
+            return -item.Quality;
         }
     }
 }

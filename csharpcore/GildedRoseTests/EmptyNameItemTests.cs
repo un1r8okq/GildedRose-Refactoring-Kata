@@ -20,7 +20,11 @@ namespace GildedRoseTests
         {
             var items = new List<Item>
             {
-                new Item { SellIn = initial },
+                new Item
+                {
+                    Name = "",
+                    SellIn = initial,
+                },
             };
             var sut = new GildedRose(items);
 
@@ -42,7 +46,11 @@ namespace GildedRoseTests
         {
             var items = new List<Item>
             {
-                new Item { SellIn = initial },
+                new Item
+                {
+                    Name = "",
+                    SellIn = initial,
+                },
             };
             var sut = new GildedRose(items);
 
@@ -63,6 +71,7 @@ namespace GildedRoseTests
             {
                 new Item
                 {
+                    Name = "",
                     Quality = initial,
                     SellIn = 1,
                 },
@@ -86,6 +95,7 @@ namespace GildedRoseTests
             {
                 new Item
                 {
+                    Name = "",
                     Quality = initial,
                     SellIn = 0,
                 },
@@ -109,6 +119,7 @@ namespace GildedRoseTests
             {
                 new Item
                 {
+                    Name = "",
                     Quality = initial,
                     SellIn = -1,
                 },
@@ -133,6 +144,7 @@ namespace GildedRoseTests
             {
                 new Item
                 {
+                    Name = "",
                     Quality = 0,
                     SellIn = sellIn,
                 },
@@ -156,9 +168,21 @@ namespace GildedRoseTests
         {
             var items = new List<Item>
             {
-                new Item { SellIn = initial },
-                new Item { SellIn = initial },
-                new Item { SellIn = initial },
+                new Item
+                {
+                    Name = "",
+                    SellIn = initial,
+                },
+                new Item
+                {
+                    Name = "",
+                    SellIn = initial,
+                },
+                new Item
+                {
+                    Name = "",
+                    SellIn = initial,
+                },
             };
             var sut = new GildedRose(items);
 
@@ -180,16 +204,19 @@ namespace GildedRoseTests
             {
                 new Item
                 {
+                    Name = "",
                     Quality = initial,
                     SellIn = 1,
                 },
                 new Item
                 {
+                    Name = "",
                     Quality = initial,
                     SellIn = 1,
                 },
                 new Item
                 {
+                    Name = "",
                     Quality = initial,
                     SellIn = 1,
                 },
@@ -206,7 +233,7 @@ namespace GildedRoseTests
         [Fact]
         public void WhenOneDayPasses_TheItemIsTheSameItem()
         {
-            var item = new Item();
+            var item = new Item { Name = "" };
             var items = new List<Item> { item };
             var sut = new GildedRose(items);
 
@@ -220,7 +247,7 @@ namespace GildedRoseTests
         {
             var stopwatch = new Stopwatch();
             var items = new List<Item>();
-            for (var i = 0; i < 100000; i++) items.Add(new Item());
+            for (var i = 0; i < 100000; i++) items.Add(new Item { Name = "" });
             var sut = new GildedRose(items);
 
             stopwatch.Start();

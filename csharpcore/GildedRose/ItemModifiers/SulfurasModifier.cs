@@ -1,12 +1,12 @@
 namespace GildedRoseKata
 {
-    public class SulfurasModifier : IModifier
+    public class SulfurasModifier : IRuleset
     {
-        public bool AppliesToItem(Item item) =>
+        public bool AppliesTo(Item item) =>
             item.Name == ItemName.Sulfuras;
 
-        public ItemChangeset GetChangeset(Item item) =>
-            new ItemChangeset
+        public ItemChanges GetChanges(Item item) =>
+            new ItemChanges
             {
                 ChangeInQuality = 0,
                 ChangeInSellIn = 0,

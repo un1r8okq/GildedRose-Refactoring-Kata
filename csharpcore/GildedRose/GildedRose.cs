@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace GildedRoseKata
 {
@@ -13,10 +13,37 @@ namespace GildedRoseKata
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                var itemUpdater = new ItemUpdater(Items[i]);
-                itemUpdater.UpdateItem();
+                if (item.Name == ItemName.Sulfuras)
+                {
+                    continue;
+                }
+
+                var ruleset = RulesetFactory.GetRuleset(item);
+                var changes = ruleset.GetChanges(item);
+
+                if (item.Name.StartsWith("Conjured "))
+                {
+                    changes.ChangeInQuality *= 2;
+                }
+
+                UpdateItem(item, changes);
+            }
+        }
+
+        private void UpdateItem(Item item, ItemChanges changes)
+        {
+            item.Quality += changes.ChangeInQuality;
+            item.SellIn += changes.ChangeInSellIn;
+
+            if (item.Quality > 50)
+            {
+                item.Quality = 50;
+            }
+            else if (item.Quality < 0)
+            {
+                item.Quality = 0;
             }
         }
     }

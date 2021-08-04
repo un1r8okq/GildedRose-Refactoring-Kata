@@ -1,11 +1,11 @@
 namespace GildedRoseKata
 {
-    public class BaseModifier : IModifier
+    public class BaseModifier : IRuleset
     {
-        public bool AppliesToItem(Item item) => true;
+        public bool AppliesTo(Item item) => true;
 
-        public ItemChangeset GetChangeset(Item item) =>
-            new ItemChangeset
+        public ItemChanges GetChanges(Item item) =>
+            new ItemChanges
             {
                 ChangeInQuality = item.SellIn > 0 ? -1 : -2,
                 ChangeInSellIn = -1,

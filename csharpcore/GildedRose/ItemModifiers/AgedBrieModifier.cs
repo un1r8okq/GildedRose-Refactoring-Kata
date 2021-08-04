@@ -1,12 +1,12 @@
 namespace GildedRoseKata
 {
-    public class AgedBrieModifier : IModifier
+    public class AgedBrieModifier : IRuleset
     {
-        public bool AppliesToItem(Item item) =>
+        public bool AppliesTo(Item item) =>
             item.Name == ItemName.AgedBrie;
 
-        public ItemChangeset GetChangeset(Item item) =>
-            new ItemChangeset
+        public ItemChanges GetChanges(Item item) =>
+            new ItemChanges
             {
 
                 ChangeInQuality = item.SellIn > 0 ? 1 : 2,
